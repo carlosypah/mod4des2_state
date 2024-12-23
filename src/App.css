@@ -64,7 +64,8 @@ main{
   flex-direction: row;
   gap: 15px;
   margin: 2em;
-
+  overflow-y: scroll;
+  padding-bottom: 54px;
 }
 
 .card-title{
