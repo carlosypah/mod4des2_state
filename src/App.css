@@ -114,6 +114,40 @@ form{
   gap: 20px;
 }
 h3{
-  padding-right: 5em;
-  
+  padding-right: 5em;  
+}
+
+
+.cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+.cart-item{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  align-items: center;
+}
+.item-img{
+  height: 50px;
+  flex: 1;
+}
+.item-name{
+  flex: 7;
+}
+.item-price{
+  flex: 2;
+
+}
+.item-count{
+
+  flex: 1;
+}
+.form-label{
+  font-size: larger;
+  font-weight: 800;
 }
