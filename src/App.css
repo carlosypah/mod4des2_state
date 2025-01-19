@@ -151,3 +151,14 @@ h3{
   font-size: larger;
   font-weight: 800;
 }
+.pizza-cards{
+  width: 18rem;
+  display: flex;
+  flex-direction: row;
+ 
+}
+
+.card2{
+  text-align: center;
+
+}

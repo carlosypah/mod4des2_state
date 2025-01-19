@@ -1,10 +1,24 @@
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import { pizzas } from "../assets/js/pizzas";
 
 const Home = () =>{
 
-    //obtener arreglo de pizzas desde el json
+    const [pizzas,setPizzas] = useState([]);
+    //obtener arreglo de pizzas desde la API
+    //función que consulta la API
+    //
+    useEffect(() => {
+        obtenerPizzas();
+    });
+
+    const obtenerPizzas = async () =>{
+        const url = "http://localhost:5000/api/pizzas";
+        const response = await fetch(url);
+        const data = await response.json();
+        setPizzas(data);
+    }
+
     //crear N CardPizzas
     return (
 
