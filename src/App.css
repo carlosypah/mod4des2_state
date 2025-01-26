@@ -162,3 +162,39 @@ h3{
   text-align: center;
 
 }
+
+.notFound{
+  display:flex ;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center;
+  align-content: center; */
+  height: 100%;
+  margin: 0;
+}
+.notFound img{
+  height: 170px;
+  align-self: center;
+  padding: 10px;
+}
+
+.errorUp {
+  min-height: 25vh;
+  /* flex: 0 1 auto; */
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+}
+
+.errorCenter {
+  min-height: 40vh;
+  background-color: rgba(146, 4, 4, 0.709);
+  display: flex;
+  flex-direction: column;
+}
+
+.errorBelow {
+  min-height: 30vh;
+}
