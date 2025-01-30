@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { pizzaCart } from "../assets/js/pizzas";
+import { CarritoContext } from '../context/CarritoContext';
 
 const Cart = () =>{
 
-    const [carrito,setCarrito] = useState(pizzaCart)
-    
+    // const [carrito,setCarrito] = useState(pizzaCart)
+    const {carrito,setCarrito} = useContext(CarritoContext);
+
     //sumar o restar del carrito
     const restarPizza = (nombrePizza) => {
         const nuevoCarrito = [...carrito]
@@ -39,7 +41,7 @@ const Cart = () =>{
         <div className='cart'>
             <h3>Detalle del pedido:</h3>
                 {carrito.map((p) => 
-                    <div key={p.id} className='cart-item'>
+                    <div key={p.llave} className='cart-item'>
                         <img src={p.img} alt={p.name} className='item-img' />
                         <span  className='item-name'>{p.name}</span>
                         <span  className='item-price'>${p.price}</span>
@@ -54,7 +56,7 @@ const Cart = () =>{
             <Form.Label>Total: ${calcularTotalInicio()}</Form.Label>
             <Button variant="dark">Pagar</Button>
         </div>
-    )
-}
+    );
+};
 
 export default Cart

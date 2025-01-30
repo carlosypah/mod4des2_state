@@ -1,11 +1,20 @@
-import Button from 'react-bootstrap/Button';
+import { useContext } from 'react'
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { CarritoContext } from '../context/CarritoContext';
 
 const Navigation = () =>{
-    const total = 25000;
+
+    const {carrito,setCarrito} = useContext(CarritoContext);
+    // const total = 25000;
     const token = false;
     
+    const calcularTotalInicio = () =>{
+        const suma = carrito.reduce(function(prev,current){return prev + +current.price * current.count},0)
+        // console.log(suma)
+        return suma
+    }
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container className="justify-content-start">
@@ -26,28 +35,11 @@ const Navigation = () =>{
                 Perfil
                 </Link>
                 <Link to="/cart" className="text-white ms-3 text-decoration-none">
-                🛒 Total ${total.toLocaleString('es-CL')}
+                🛒 Total ${calcularTotalInicio().toLocaleString('es-CL')}
                 </Link>
             </Container>
 
             </Navbar>
-
-        // <div className='navegation'>
-        //     <span className='navbar-logo item1'>Pizzería Mamma Mía!</span>
-        //     <Button variant='outline-light' className='item2'>🍕 Home</Button>
-        //     {token ? 
-        //         <>
-        //             <Button variant='outline-light' className='item3'>🔒 Profile</Button>
-        //             <Button variant='outline-light' className='item4'>🔒 Logout</Button>
-        //         </> : 
-        //         <>
-        //             <Button variant='outline-light' className='item3'>🔐 Login</Button> 
-        //             <Button variant='outline-light' className='item4'>🔐 Register</Button>
-        //         </>
-        //     } 
-        //     <span  className='item5'>.</span>   
-        //     <Button variant='outline-primary' className='item6'>🛒 Total ${total.toLocaleString('es-CL')}</Button>
-        // </div>
     );
 }
 
