@@ -1,13 +1,15 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
+import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { pizzaCart } from "../assets/js/pizzas";
 import { CarritoContext } from '../context/CarritoContext';
+import { TokenContext } from '../context/TokenContext';
 
 const Cart = () =>{
 
-    // const [carrito,setCarrito] = useState(pizzaCart)
     const {carrito,setCarrito} = useContext(CarritoContext);
+    const {token,setToken} = useContext(TokenContext);
 
     //sumar o restar del carrito
     const restarPizza = (nombrePizza) => {
@@ -37,13 +39,22 @@ const Cart = () =>{
         // console.log(suma)
         return suma
     }
+
+    const puedePagar = () => {
+        return token ? "" : "disabled";
+    }
+
     return(
         <div className='cart'>
             <h3>Detalle del pedido:</h3>
                 {carrito.map((p) => 
                     <div key={p.llave} className='cart-item'>
                         <img src={p.img} alt={p.name} className='item-img' />
-                        <span  className='item-name'>{p.name}</span>
+                        <span  className='item-name'>
+                            
+                        <Link to={`/Pizza/${p.llave}`}>{p.name}</Link>    
+                        </span>
+
                         <span  className='item-price'>${p.price}</span>
                         <Button variant="outline-danger" onClick={() => restarPizza(p.name)}>-</Button>
                         <span className='item-count'>{p.count}</span>
@@ -54,7 +65,8 @@ const Cart = () =>{
                 )}
             {/* <p><span id="total"></span></p> */}
             <Form.Label>Total: ${calcularTotalInicio()}</Form.Label>
-            <Button variant="dark">Pagar</Button>
+            {token ? <Button variant="dark">Pagar</Button> : <Button variant="dark" disabled >Pagar</Button> } 
+            
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { CarritoContext } from '../context/CarritoContext';
@@ -63,7 +64,9 @@ const CardPizza = ({llave,name,price,ingredients,img}) => {
             <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={img}/>
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
+                    <Card.Title>
+                        {name}
+                    </Card.Title>
                 </Card.Body>
                 <Card.Body>
                     <span className='ingredientes'>Ingredientes</span><br />
@@ -73,7 +76,10 @@ const CardPizza = ({llave,name,price,ingredients,img}) => {
                 <Card.Body>
                     <span className='precio'> Precio:${price.toLocaleString('es-CL')}</span>
                     <section className='card-buttons'>
-                        <Button variant="outline-dark">Ver Más 👀</Button>
+                        <Button variant="outline-dark">
+                        <Link to={`/Pizza/${llave}`}>Ver Más 👀</Link>
+                            
+                        </Button>
                         <Button variant="dark" onClick={() => sumarPizza(llave,name,price,img)} >Añadir 🛒</Button>
                     </section>
                 </Card.Body>

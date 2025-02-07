@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
+import { TokenContext } from '../context/TokenContext';
 
 const Home = () =>{
 
     const [pizzas,setPizzas] = useState([]);
+    const {token,setToken} = useContext(TokenContext);
     
     useEffect(() => {
         obtenerPizzas();

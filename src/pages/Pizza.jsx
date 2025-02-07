@@ -1,4 +1,5 @@
 import {useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -7,6 +8,7 @@ const Pizza = () => {
     //guardar resultados de la api
     const [pizzita, setPizzita] = useState([])
     const [ingredientes, setIngredientes] = useState([])
+    const {id} = useParams();
 
     //useEffect para llamar a la api
     useEffect( () => {
@@ -14,7 +16,8 @@ const Pizza = () => {
     },[]);
 
     const consultarApi = async () => {
-        const url = "http://localhost:5000/api/pizzas/p001";
+        const url = "http://localhost:5000/api/pizzas/"+  id ;
+        // console.log(id)
         const response = await fetch(url);
         const data = await response.json();
         data.name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
